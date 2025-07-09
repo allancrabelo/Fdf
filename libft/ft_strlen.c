@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 00:23:19 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/09 10:26:46 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/02/08 17:07:27 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/04/07 15:43:04 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "libft.h"
 
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+/* 
 int	main(int argc, char **argv)
 {
-	t_fdf	data;
-	(void)argv;
-	if (argc != 2)
+	if(argc != 2)
 	{
-		ft_putstr_fd("Usage: ./fdf <map file>\n", 2);
+		printf("Input Error\n");
 		return (1);
 	}
-	if (parser(&data, argv[1]) == -1)
-		return (1);
-	generate_map(&data);
-	if (start_fdf(&data) == -1)
-		return (1);
+	printf("Original strlen: %zu\n", strlen(argv[1]));
+	printf("Ft_strlen: %d\n", ft_strlen(argv[1]));
 	return (0);
-}
+} */

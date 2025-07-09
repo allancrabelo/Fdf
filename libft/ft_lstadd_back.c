@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 00:23:19 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/09 10:26:46 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/03/02 16:26:31 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/04/09 16:20:19 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_fdf	data;
-	(void)argv;
-	if (argc != 2)
+	t_list	*temp;
+
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
 	{
-		ft_putstr_fd("Usage: ./fdf <map file>\n", 2);
-		return (1);
+		*lst = new;
+		return ;
 	}
-	if (parser(&data, argv[1]) == -1)
-		return (1);
-	generate_map(&data);
-	if (start_fdf(&data) == -1)
-		return (1);
-	return (0);
+	temp = *lst;
+	while (temp->next)
+		temp = temp -> next;
+	temp -> next = new;
 }
+/* 
+int	main(void)
+{
+	t_list *lst;
+	t_list *new;
+
+	lst = ft_lstnew("42");
+	new = ft_lstnew("School");
+	ft_lstadd_back(&lst, new);
+	printf("%s\n", (char *)lst->next->content);
+	return (0);
+} */

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 00:23:19 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/09 10:26:46 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/02/11 12:55:07 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/04/07 15:19:16 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_bzero(void *s, size_t len)
 {
-	t_fdf	data;
-	(void)argv;
-	if (argc != 2)
-	{
-		ft_putstr_fd("Usage: ./fdf <map file>\n", 2);
-		return (1);
-	}
-	if (parser(&data, argv[1]) == -1)
-		return (1);
-	generate_map(&data);
-	if (start_fdf(&data) == -1)
-		return (1);
+	unsigned char	*ptr;
+
+	ptr = s;
+	while (len--)
+		*ptr++ = 0;
+}
+/* int	main(void)
+{
+	char str[] = "42_School_Porto!";
+
+	printf("Before: %s\n", str);
+	ft_bzero(str + 9, 1);
+	printf("After: %s\n", str);
 	return (0);
 }
+ */

@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 00:23:19 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/09 10:26:46 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/03/01 17:17:33 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/04/07 15:29:57 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+t_list	*ft_lstnew(void *content)
 {
-	t_fdf	data;
-	(void)argv;
-	if (argc != 2)
-	{
-		ft_putstr_fd("Usage: ./fdf <map file>\n", 2);
-		return (1);
-	}
-	if (parser(&data, argv[1]) == -1)
-		return (1);
-	generate_map(&data);
-	if (start_fdf(&data) == -1)
-		return (1);
-	return (0);
+	t_list	*new;
+
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
+/* int	main(void)
+{
+	char	*str;
+	t_list	*lst;
+
+	str = (char *)malloc(sizeof(char) * 16);
+	str = "42 School Porto";
+	lst = ft_lstnew((void *)str);
+	ft_putendl_fd(lst -> content, 1);
+	free(lst);
+	return (0);
+}*/

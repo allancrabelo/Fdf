@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 00:23:19 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/09 10:26:46 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/02/28 00:35:12 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/04/07 15:40:55 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	t_fdf	data;
-	(void)argv;
-	if (argc != 2)
+	unsigned int	i;
+
+	i = 0;
+	if (s && f)
 	{
-		ft_putstr_fd("Usage: ./fdf <map file>\n", 2);
-		return (1);
+		while (s[i])
+		{
+			f(i, &s[i]);
+			i++;
+		}
 	}
-	if (parser(&data, argv[1]) == -1)
-		return (1);
-	generate_map(&data);
-	if (start_fdf(&data) == -1)
-		return (1);
-	return (0);
 }
+/* static void	my_toupper(unsigned int i, char *c)
+{
+	(void)i;
+	if (*c >= 'a' && *c <= 'z')
+		*c = *c - 32;
+}
+int main(void)
+{
+	char str[] = "42School";
+	ft_striteri(str, my_toupper);
+	printf("%s\n", str);
+	return (0);
+} */

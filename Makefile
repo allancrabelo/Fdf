@@ -1,37 +1,64 @@
-NAME = fdf
-CC = cc
-CCFLAGS = -Wall -Wextra -Werror
+# === VARIÁVEIS ===
 
-MLX_DIR = minilibx-linux
-MLXFLAGS = -L $(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm
-INCLUDES = -Iinclude
+NAME        = fdf
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror
 
-SRCS = src/main.c src/utils.c src/window.c
-OBJS = $(SRCS:.c=.o)
+# Diretórios
+SRC_DIR     = src
+MLX_DIR     = minilibx-linux
+LIBFT_DIR   = libft
+GNL_DIR     = get_next_line
 
-all: $(MLX_DIR) $(NAME)
+# Includes e libs
+INCLUDES    = -Iinclude -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX_DIR)
+LIBS        = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm \
+              -L$(LIBFT_DIR) -lft \
+              -L$(GNL_DIR) -lgnl
+
+# Fontes
+SRCS        = \
+	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/window.c \
+	$(SRC_DIR)/parser.c \
+	$(SRC_DIR)/parser2.c \
+	$(SRC_DIR)/generate_map.c
+
+OBJS        = $(SRCS:.c=.o)
+
+# === REGRAS ===
+
+all: $(MLX_DIR) $(LIBFT_DIR)/libft.a $(GNL_DIR)/libgnl.a $(NAME)
+
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME)
+	@echo "✅ Compilado: $(NAME)"
 
 $(MLX_DIR):
 	@if [ ! -d "$(MLX_DIR)" ]; then \
-		echo "Cloning minilibx..."; \
+		echo "Clonando minilibx..."; \
 		git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
-	else \
-		echo "minilibx already exists, skipping clone."; \
 	fi
-
-$(NAME): $(OBJS)
 	@make -C $(MLX_DIR)
-	@$(CC) $(CCFLAGS) $(OBJS) $(MLXFLAGS) $(INCLUDES) -o $(NAME)
-	@echo "Compilation finished: $(NAME)"
+
+$(LIBFT_DIR)/libft.a:
+	@make -C $(LIBFT_DIR)
+
+$(GNL_DIR)/libgnl.a:
+	@make -C $(GNL_DIR)
 
 clean:
-	@rm -rf $(OBJS)
-	@echo "Object files removed."
+	@rm -f $(OBJS)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(GNL_DIR) clean
+	@echo "🧹 Objetos removidos"
 
 fclean: clean
-	@rm -rf $(NAME)
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(GNL_DIR) fclean
 	@rm -rf $(MLX_DIR)
-	@echo "Executable and minilibx removed."
+	@echo "🧨 Binários e dependências removidas"
 
 re: fclean all
 

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 00:23:19 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/09 10:26:46 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/02/09 16:52:57 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/04/07 15:47:49 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "libft.h"
 
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
+}
+/* 
 int	main(int argc, char **argv)
 {
-	t_fdf	data;
-	(void)argv;
 	if (argc != 2)
 	{
-		ft_putstr_fd("Usage: ./fdf <map file>\n", 2);
+		printf("Input Error\n");
 		return (1);
 	}
-	if (parser(&data, argv[1]) == -1)
-		return (1);
-	generate_map(&data);
-	if (start_fdf(&data) == -1)
-		return (1);
+	printf("Original toupper: %d\n", toupper(argv[1][0]));
+	printf("Ft_toupper: %d\n", ft_toupper(argv[1][0]));
 	return (0);
-}
+} */

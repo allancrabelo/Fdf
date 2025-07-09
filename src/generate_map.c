@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   generate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 00:23:19 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/09 10:26:46 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/07/09 10:28:03 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/07/09 10:31:21 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	main(int argc, char **argv)
+t_map	*generate_map(t_fdf *data)
 {
-	t_fdf	data;
-	(void)argv;
-	if (argc != 2)
-	{
-		ft_putstr_fd("Usage: ./fdf <map file>\n", 2);
-		return (1);
-	}
-	if (parser(&data, argv[1]) == -1)
-		return (1);
-	generate_map(&data);
-	if (start_fdf(&data) == -1)
-		return (1);
-	return (0);
+	t_map	*map;
+
+	
+	return (map);
 }
