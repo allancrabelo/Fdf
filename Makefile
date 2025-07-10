@@ -1,65 +1,96 @@
-# === VARIÁVEIS ===
+NAME		:= fdf
+BONUSNAME	:= fdf_bonus
+CC			:= cc
+RM			:= rm -f
+FLAGS		:= -Wall -Wextra -Werror
+DEBUG		:= -g
 
-NAME        = fdf
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+HEADDIR		:= ./includes/
+HEADLIST	:= fdf.h
+HEADERS		:= $(addprefix $(HEADDIR), $(HEADLIST))
 
-# Diretórios
-SRC_DIR     = src
-MLX_DIR     = minilibx-linux
-LIBFT_DIR   = libft
-GNL_DIR     = get_next_line
+SRCSDIR		:= ./src/
+SRCSLIST	:= main.c \
+						hooks.c \
+						file_handling.c \
+						gile_handling2.c \
+						color_handling.c \
+						lines.c \
+						math_helpers.c \
+						transform.c \
+						transform2.c \
+						draw.c \
+						generate_map.c \
+SRCS		:= $(addprefix $(SRCSDIR), $(SRCSLIST))
+BONUSSRCSLIST	:= main.c \
+						hooks.c \
+						file_handling.c \
+						gile_handling2.c \
+						color_handling.c \
+						lines.c \
+						math_helpers.c \
+						transform.c \
+						transform2.c \
+						draw.c \
+						generate_map.c \
+BONUSSRCS		:= $(addprefix $(SRCSDIR), $(BONUSSRCSLIST))
 
-# Includes e libs
-INCLUDES    = -Iinclude -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX_DIR)
-LIBS        = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm \
-              -L$(LIBFT_DIR) -lft \
-              -L$(GNL_DIR) -lgnl
+OBJSDIR			:= ./obj/
+OBJSLIST		:= $(SRCSLIST:.c=.o)
+OBJS			:= $(addprefix $(OBJSDIR), $(OBJSLIST))
+BONUSOBJSLIST	:= $(BONUSSRCSLIST:.c=.o)
+BONUSOBJS		:= $(addprefix $(OBJSDIR), $(BONUSOBJSLIST))
 
-# Fontes
-SRCS        = \
-	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/window.c \
-	$(SRC_DIR)/parser.c \
-	$(SRC_DIR)/parser2.c \
-	$(SRC_DIR)/generate_map.c
+LIBFTDIR		:= ./libft/
+LIBFT			:= $(LIBFTDIR)libft.a
 
-OBJS        = $(SRCS:.c=.o)
+MLXDIR			:= ./minilibx-linux/
+MLX				:= $(MLXDIR)libmlx.a
 
-# === REGRAS ===
+LIBS			:= -L$(LIBFTDIR) -L$(MLXDIR) -lft -lmlx -lXext -lX11 -lm
+INCS			:= -I$(HEADDIR) -I$(LIBFTDIR) -I$(MLXDIR)
 
-all: $(MLX_DIR) $(LIBFT_DIR)/libft.a $(GNL_DIR)/libgnl.a $(NAME)
+$(NAME):		$(MLX) $(LIBFT) $(OBJSDIR) $(OBJS)
+				$(CC) $(FLAGS) $(DEBUG) $(OBJS) -o $(NAME) $(LIBS) $(INCS)
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME)
-	@echo "✅ Compilado: $(NAME)"
+$(BONUSNAME):	$(MLX) $(LIBFT) $(OBJSDIR) $(BONUSOBJS)
+				$(CC) $(FLAGS) $(DEBUG) $(BONUSOBJS) -o $(BONUSNAME) $(LIBS) $(INCS)
 
-$(MLX_DIR):
-	@if [ ! -d "$(MLX_DIR)" ]; then \
-		echo "Clonando minilibx..."; \
-		git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR); \
-	fi
-	@make -C $(MLX_DIR)
+$(LIBFT):
+				make -C $(LIBFTDIR)
 
-$(LIBFT_DIR)/libft.a:
-	@make -C $(LIBFT_DIR)
+$(MLX):
+				git submodule init
+				git submodule update
+				make -C $(MLXDIR)
 
-$(GNL_DIR)/libgnl.a:
-	@make -C $(GNL_DIR)
+$(OBJSDIR)%.o:	$(SRCSDIR)%.c $(HEADERS)
+				$(CC) $(FLAGS) $(DEBUG) $(INCS) -c $< -o $@
+
+$(OBJSDIR):
+				mkdir -p $(OBJSDIR)
+
+.PHONY:			all clean fclean re bonus test bonustest
+
+
+all:			$(NAME)
 
 clean:
-	@rm -f $(OBJS)
-	@make -C $(LIBFT_DIR) clean
-	@make -C $(GNL_DIR) clean
-	@echo "🧹 Objetos removidos"
+				$(RM) -r $(OBJSDIR)
+				make -C $(LIBFTDIR) clean
+				make -C $(MLXDIR) clean
 
-fclean: clean
-	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean
-	@make -C $(GNL_DIR) fclean
-	@rm -rf $(MLX_DIR)
-	@echo "🧨 Binários e dependências removidas"
+fclean:			clean
+				$(RM) $(NAME)
+				$(RM) $(BONUSNAME)
+				make -C $(LIBFTDIR) fclean
 
-re: fclean all
+re:				fclean all
 
-.PHONY: all clean fclean re
+bonus:			$(BONUSNAME)
+
+test:			all
+				./$(NAME) test_maps/42.fdf
+
+bonustest:		bonus
+				./$(BONUSNAME) test_maps/42.fdf

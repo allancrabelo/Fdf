@@ -6,7 +6,7 @@
 /*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 00:34:10 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/04/09 17:12:50 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/07/10 00:35:33 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 2048
+# endif
 
 //MANDATORY PART
 int		ft_isalpha(int c);
@@ -70,5 +74,18 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+//GET NEXT LINE
+char	*get_next_line(int fd);
+
+//PRINTF
+int		ft_printf(const char *str, ...);
+int		ft_puthex(unsigned int n, char up_or_low);
+int		ft_putstr(char *str);
+int		ft_putchar(char c);
+int		ft_putnumber(int n);
+int		ft_putunsigned(unsigned int n);
+char	*ft_itoa(int n);
+int	ft_putpointer(void *pointer);
 
 #endif
