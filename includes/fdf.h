@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: aaugusto <<aaugusto@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 01:06:06 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/13 00:26:25 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/07/13 10:14:16 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@
 
 # define WIN_W 1280
 # define WIN_H 720
-# define BLACK	0x00000000
+# define BLACK 0x00000000
 
 typedef struct s_pt
 {
-	
+	float_t	x;
+	float_t	y;
+	float_t	z;
+	int		color;
 }	t_pt;
 
 
@@ -71,4 +74,11 @@ char	*get_file(int fd, t_data *data);
 int		lines_consistent(int cols, t_data *data);
 void	append_line_to_file(char **line, char **file);
 void	free_str_arr(char **str);
+
+//Draw
+void	render_background(t_img *img, int color);
+void	draw_map(t_img *img, t_map *map, t_pt offset);
+
+//Operations
+t_pt	vec_add(t_pt pt1, t_pt pt2);
 #endif

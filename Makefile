@@ -16,6 +16,7 @@ SRCSLIST		:= main.c \
 					file_handling.c \
 					file_handling2.c \
 					draw.c \
+					math_helpers.c \
 
 SRCS			:= $(addprefix ${SRCSDIR}, ${SRCSLIST})
 BONUSSRCSLIST	:= main.c \
@@ -23,6 +24,7 @@ BONUSSRCSLIST	:= main.c \
 					file_handling.c \
 					file_handling2.c \
 					draw.c \
+					math_helpers.c \
 					
 BONUSSRCS		:= $(addprefix ${SRCSDIR}, ${BONUSSRCSLIST})
 

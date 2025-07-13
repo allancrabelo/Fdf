@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: aaugusto <<aaugusto@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:30:09 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/12 23:59:57 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/07/13 09:55:07 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 int	loop_hook(t_data *data)
 {
+	t_map	*map;
+	t_pt	offset;
+
 	if (!data->win_ptr)
 		return (1);
-	//render_background(&data->img, BLACK);
-	
+	render_background(&data->img, BLACK);
+	map = data->map;
+	offset.x = WIN_W / 2;
+	offset.y = WIN_H / 2;
+	offset.z = 0;
+	draw_map(&data->img, map, offset);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img.mlx_img, 0, 0);
 	return (0);
 }
 
