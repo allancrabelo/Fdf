@@ -6,7 +6,7 @@
 /*   By: aaugusto <<aaugusto@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:30:09 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/13 09:55:07 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/07/13 18:23:21 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	start_mlx(t_data *data)
 	mlx_loop_hook(data->mlx_ptr, loop_hook, data);
 	mlx_hook(data->win_ptr, DestroyNotify, 0, close_app, data);
 	mlx_hook(data->win_ptr, KeyPress, 1, key_hook1, data);
+	mlx_do_key_autorepeaton(data->mlx_ptr);
 	mlx_loop(data->mlx_ptr);
 	return (0);
 }

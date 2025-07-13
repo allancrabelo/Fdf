@@ -17,6 +17,9 @@ SRCSLIST		:= main.c \
 					file_handling2.c \
 					draw.c \
 					math_helpers.c \
+					lines.c \
+					color_handling.c \
+					generate_maps.c \
 
 SRCS			:= $(addprefix ${SRCSDIR}, ${SRCSLIST})
 BONUSSRCSLIST	:= main.c \
@@ -25,7 +28,10 @@ BONUSSRCSLIST	:= main.c \
 					file_handling2.c \
 					draw.c \
 					math_helpers.c \
-					
+					lines.c \
+					color_handling.c \
+					generate_maps.c \
+
 BONUSSRCS		:= $(addprefix ${SRCSDIR}, ${BONUSSRCSLIST})
 
 OBJSDIR			:= ./obj/

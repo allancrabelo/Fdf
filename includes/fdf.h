@@ -6,7 +6,7 @@
 /*   By: aaugusto <<aaugusto@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 01:06:06 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/13 10:14:16 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/07/13 18:31:48 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,16 @@ void	free_str_arr(char **str);
 //Draw
 void	render_background(t_img *img, int color);
 void	draw_map(t_img *img, t_map *map, t_pt offset);
+void	img_pix_put(t_img *img, t_pt pt);
 
 //Operations
 t_pt	vec_add(t_pt pt1, t_pt pt2);
+
+//Lines
+int		draw_line(t_img *img, t_pt start, t_pt end);
+t_pt	vec_sub(t_pt pt1, t_pt	pt2);
+
+//Colors
+int		get_color(t_pt cur, t_pt start, t_pt end, t_pt delta);
+
 #endif
