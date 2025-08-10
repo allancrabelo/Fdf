@@ -13,24 +13,18 @@ HEADERS			:= $(addprefix ${HEADDIR}, ${HEADLIST})
 SRCSDIR			:= ./src/
 SRCSLIST		:= main.c \
 					hooks.c \
-					file_handling.c \
-					file_handling2.c \
 					draw.c \
-					math_helpers.c \
 					lines.c \
+					math_utils.c \
+					parsing.c \
+					parsing2.c \
+					map_generator.c \
 					color_handling.c \
-					generate_maps.c \
+					isometric_generator.c \
+					isometric_generator2.c \
 
 SRCS			:= $(addprefix ${SRCSDIR}, ${SRCSLIST})
-BONUSSRCSLIST	:= main.c \
-					hooks_bonus.c \
-					file_handling.c \
-					file_handling2.c \
-					draw.c \
-					math_helpers.c \
-					lines.c \
-					color_handling.c \
-					generate_maps.c \
+BONUSSRCSLIST	:= 
 
 BONUSSRCS		:= $(addprefix ${SRCSDIR}, ${BONUSSRCSLIST})
 

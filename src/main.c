@@ -3,28 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <<aaugusto@student.42porto.com    +#+  +:+       +#+        */
+/*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/10 16:24:10 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/13 18:31:19 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/08/09 13:03:40 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/08/10 20:58:58 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 
-int	main(int argc, char **argv)
+#include "../includes/fdf.h"
+#include "../includes/colors.h"
+
+int main(int argc, char **argv)
 {
 	t_data	data;
-
+	
 	(void)argv;
 	if (argc != 2)
-	{
-		ft_putstr_fd("Usage: ./fdf <MAP FILE>\n", 2);
+		return (ft_printf(BOLD SCYAN "Usage: ./fdf [Map File]\n" SRESET), 2);
+	if (parser (&data, argv[1]) == 1)
 		return (1);
-	}
-//	if (parse_file(&data, argv[1]) == 1)
-//		return (1);
+	map_generator(&data);
+	isometric_generator(data.map);
+	autoscale_generator(data.map);
 	if (start_mlx(&data) == 1)
-		return (-1);
+		return (1);
 	return (0);
 }

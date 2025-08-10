@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <<aaugusto@student.42porto.com    +#+  +:+       +#+        */
+/*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 16:45:00 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/13 18:19:50 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/08/09 20:06:22 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/08/10 19:34:57 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,58 +14,58 @@
 
 int	draw_line_low(t_img *img, t_pt start, t_pt end)
 {
+	int		y_variance;
 	t_pt	delta;
-	int		yi;
-	int		err;
-	t_pt	cur;
+	t_pt	current;
+	int		error;
 
 	delta = vec_sub(end, start);
-	yi = 1;
+	y_variance = 1;
 	if (delta.y < 0)
-		yi = 1;
+		y_variance = -1;
 	delta.y = fabsf(delta.y);
-	err = 2 * delta.y - delta.x;
-	cur = start;
-	while(cur.x < end.x)
+	error = 2 * delta.y - delta.x;
+	current = start;
+	while (current.x < end.x)
 	{
-		img_pix_put(img, cur);
-		if (err > 0)
-			cur.y += yi;
-		if (err > 0)
-			err = err + (2 * (delta.y - delta.x));
+		img_pix_put(img, current);
+		if (error > 0)
+			current.y += y_variance;
+		if (error > 0)
+			error = error + (2 * (delta.y - delta.x));
 		else
-			err = err + 2 * delta.y;
-		cur.color = get_color(cur, start, end, delta);
-		cur.x++;
+			error = error + 2 * delta.y;
+		current.color = get_color(current, start, end, delta);
+		current.x++;
 	}
 	return (0);
 }
 
 int	draw_line_high(t_img *img, t_pt start, t_pt end)
 {
+	int		x_variance;
 	t_pt	delta;
-	int		xi;
-	int		err;
-	t_pt	cur;
+	t_pt	current;
+	int		error;
 
 	delta = vec_sub(end, start);
-	xi = 1;
+	x_variance = 1;
 	if (delta.x < 0)
-		xi = 1;
+		x_variance = -1;
 	delta.x = fabsf(delta.x);
-	err = 2 * delta.x - delta.y;
-	cur = start;
-	while(cur.y < end.y)
+	error = 2 * delta.x - delta.y;
+	current = start;
+	while (current.y < end.y)
 	{
-		img_pix_put(img, cur);
-		if (err > 0)
-			cur.x += xi;
-		if (err > 0)
-			err = err + (2 * (delta.x - delta.y));
+		img_pix_put(img, current);
+		if (error > 0)
+			current.x += x_variance;
+		if (error > 0)
+			error = error + (2 * (delta.x - delta.y));
 		else
-			err = err + 2 * delta.x;
-		cur.color = get_color(cur, start, end, delta);
-		cur.y++;
+			error = error + 2 * delta.x;
+		current.color = get_color(current, start, end, delta);
+		current.y++;
 	}
 	return (0);
 }

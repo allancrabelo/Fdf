@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_handling.c                                    :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <<aaugusto@student.42porto.com    +#+  +:+       +#+        */
+/*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 15:32:34 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/07/12 16:42:06 by aaugusto         ###   ########.fr       */
+/*   Created: 2025/08/10 11:58:12 by aaugusto          #+#    #+#             */
+/*   Updated: 2025/08/10 13:33:33 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/colors.h"
 
 void	replace_newline(unsigned int i, char *s)
 {
@@ -19,59 +20,53 @@ void	replace_newline(unsigned int i, char *s)
 		*s = ' ';
 }
 
-void	free_str_arr(char **str)
+void	free_str_arr(char **str_arr)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str_arr[i])
 	{
-		free(str[i]);
+		free(str_arr[i]);
 		i++;
 	}
-	free(str);
+	free (str_arr);
 }
-int	count_cols(char *string)
+
+int	count_cols(char *s)
 {
 	int		cols;
 	char	*tmp;
 	char	**split;
 
+	tmp = ft_strdup(s);
 	cols = 0;
-	tmp = ft_strdup(string);
 	ft_striteri(tmp, replace_newline);
 	split = ft_split(tmp, ' ');
 	free(tmp);
-	while (split[cols])
+	while (split[cols] != NULL)
 		cols++;
 	free_str_arr(split);
 	return (cols);
 }
 
-int	parse_file(t_data *data, char *filename)
+int	parser(t_data *data, char *file)
 {
-	int		fd;
-	char	*file;
+	int	fd;
 
-	fd = open(filename, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putstr_fd("Error: File not found or permission denied.\n", 2);
-		return (1);
-	}
+		return (ft_printf(BOLD SRED "[ERROR] Failed to open file\n" SRESET), 1);
 	data->map = malloc(sizeof(t_map));
-	if (!data->map)
+	if (data->map == NULL)
 		return (1);
 	file = get_file(fd, data);
-	if (!file)
+	if (file == NULL)
 		return (1);
 	ft_striteri(file, replace_newline);
 	data->parsed_file = ft_split(file, ' ');
 	free(file);
 	if (close(fd) == -1)
-	{
-		ft_putstr_fd("Error: Failed to close file\n", 2);
-		return (1);
-	}
+		return (ft_printf(BOLD SRED "Failed to close \n" SRESET), 1);
 	return (0);
 }
