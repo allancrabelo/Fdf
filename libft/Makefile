@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaugusto <<aaugusto@student.42porto.com    +#+  +:+       +#+         #
+#    By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 00:58:27 by aaugusto          #+#    #+#              #
-#    Updated: 2025/07/12 16:47:34 by aaugusto         ###   ########.fr        #
+#    Updated: 2025/08/11 01:06:37 by aaugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS	:=	ft_atoi.c \
 				ft_strlcpy.c \
 				ft_strlen.c \
 				ft_strmapi.c \
+				ft_strcmp.c \
 				ft_strncmp.c \
 				ft_strnstr.c \
 				ft_strrchr.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 12:39:02 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/08/10 21:49:52 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/08/11 01:14:52 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,20 @@ void	append_line_to_file(char **line, char **file)
 	free(tmp);
 	free(*line);
 	*line = "";
+}
+
+int	name_parser(char *str)
+{
+	size_t	len;
+
+	if (!str)
+		return (0);
+	len = ft_strlen(str);
+	if (len <= 4)
+		return (0);
+	if (ft_strcmp(str + len - 4, ".fdf") != 0)
+		return (0);
+	if (str[0] == '.')
+		return (0);
+	return (1);
 }

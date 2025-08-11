@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 11:58:12 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/08/10 13:33:33 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/08/11 01:08:33 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	parser(t_data *data, char *file)
 {
 	int	fd;
 
+	if (!name_parser(file))
+		return (ft_printf(BOLD SRED "[ERROR] File must end with <name>.fdf\n" SRESET), 1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (ft_printf(BOLD SRED "[ERROR] Failed to open file\n" SRESET), 1);

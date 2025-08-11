@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 01:06:06 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/08/10 21:20:08 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/08/11 01:14:27 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
+# include <stdbool.h>
 
 // Structs
 typedef struct s_pt
@@ -129,6 +130,7 @@ int		count_cols(char *s);
 void	replace_newline(unsigned int i, char *s);
 void	free_str_arr(char **str_arr);
 void	append_line_to_file(char **line, char **file);
+int	name_parser(char *str);
 
 // Map Generator
 t_map	*map_generator(t_data *data);
