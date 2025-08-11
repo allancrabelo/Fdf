@@ -6,7 +6,7 @@
 /*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 18:31:28 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/08/10 21:28:50 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/08/11 12:28:39 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,15 @@ void	draw_map(t_img *img, t_map *map, t_pt offset)
  */
 void	render_background(t_img *img, int color)
 {
+	int	total_pixels = WIN_H * WIN_W;
+	int	*pixels;
 	int	i;
-	int	j;
 
+	pixels = (int *)img->addr;
 	i = 0;
-	while (i < WIN_H)
+	while (i < total_pixels)
 	{
-		j = 0;
-		while (j < WIN_W)
-		{
-			img_pix_put(img, (t_pt){j, i, 0, color});
-			j++;
-		}
+		pixels[i] = color;
 		i++;
 	}
 }

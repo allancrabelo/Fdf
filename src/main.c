@@ -6,19 +6,17 @@
 /*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 13:03:40 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/08/10 20:58:58 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/08/11 12:46:09 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/fdf.h"
 #include "../includes/colors.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
-	
-	(void)argv;
+
 	if (argc != 2)
 		return (ft_printf(BOLD SCYAN "Usage: ./fdf [Map File]\n" SRESET), 2);
 	if (parser (&data, argv[1]) == 1)

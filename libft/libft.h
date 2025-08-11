@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 00:34:10 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/08/11 01:05:20 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/08/11 12:15:29 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2048
+# define BUFFER_SIZE 2048
 # endif
 
 //MANDATORY PART
@@ -40,7 +40,6 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
-int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);

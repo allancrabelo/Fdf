@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaugusto <aaugusto@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: aaugusto <aaugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 11:58:12 by aaugusto          #+#    #+#             */
-/*   Updated: 2025/08/11 01:08:33 by aaugusto         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:04:20 by aaugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,12 @@ int	count_cols(char *s)
 	return (cols);
 }
 
-int	parser(t_data *data, char *file)
+int	parser(t_data *data, char *filename)
 {
-	int	fd;
+	int		fd;
+	char	*file;
 
-	if (!name_parser(file))
-		return (ft_printf(BOLD SRED "[ERROR] File must end with <name>.fdf\n" SRESET), 1);
-	fd = open(file, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (ft_printf(BOLD SRED "[ERROR] Failed to open file\n" SRESET), 1);
 	data->map = malloc(sizeof(t_map));

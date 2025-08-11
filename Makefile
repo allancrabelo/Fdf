@@ -43,29 +43,29 @@ MLX				:= ${MLXDIR}libmlx.a
 LIBS			:= -L${LIBFTDIR} -L${MLXDIR} -lft -lmlx -lXext -lX11 -lm
 INCS			:= -I${HEADDIR} -I${LIBFTDIR} -I${MLXDIR}
 
-CYAN			:= \033[0;36m
+RED			:= \033[0;31m
 RESET			:= \033[0m
 
 ${NAME}:		${MLX} ${LIBFT} ${OBJSDIR} ${OBJS}
 				@echo ""
-				@echo "${CYAN}Compiling ${NAME} ...${RESET}"
+				@echo "${RED}Compiling ${NAME} ...${RESET}"
 				${CC} ${FLAGS} ${DEBUG} ${OBJS} -o ${NAME} ${LIBS} ${INCS}
 				@echo ""
-				@echo "${CYAN}$(NAME) Created${RESET}"
+				@echo "${RED}$(NAME) Ready to use${RESET}"
 
 ${BONUSNAME}:	${MLX} ${LIBFT} ${OBJSDIR} ${BONUSOBJS}
 				@echo ""
-				@echo "${CYAN}Compiling ${BONUSNAME} ...${RESET}"
+				@echo "${RED}Compiling ${BONUSNAME} ...${RESET}"
 				${CC} ${FLAGS} ${DEBUG} ${BONUSOBJS} -o ${BONUSNAME} ${LIBS} ${INCS}
 				@echo ""
-				@echo "${CYAN}$(BONUSNAME) Created${RESET}"
+				@echo "${RED}$(BONUSNAME) Ready to use${RESET}"
 
 ${LIBFT}:
 				make -C ${LIBFTDIR}
 
 ${MLX}:
 				@echo ""
-				@echo "${CYAN}Compiling ${MLX} ...${RESET}"
+				@echo "${RED}Compiling ${MLX} ...${RESET}"
 				git submodule init
 				git submodule update
 				make -C ${MLXDIR}
@@ -82,22 +82,22 @@ ${OBJSDIR}:
 
 compiling:
 				@echo ""
-				@echo "${CYAN}Compiling Objects ...${RESET}"
+				@echo "${RED}Compiling Objects ...${RESET}"
 
 all:			${NAME}
 
 clean:
 				@echo ""
-				@echo "${CYAN}Deleting $(NAME) Objects ...${RESET}"
+				@echo "${RED}Deleting $(NAME) Objects ...${RESET}"
 				${RM} -r ${OBJSDIR}
 				make -C ${LIBFTDIR} clean
 				make -C ${MLXDIR} clean
 
 fclean:			clean
 				@echo ""
-				@echo "${CYAN}Deleting $(NAME) Executable ...${RESET}"
+				@echo "${RED}Deleting $(NAME) Executable ...${RESET}"
 				${RM} ${NAME}
-				@echo "${CYAN}Deleting $(BONUSNAME) Executable ...${RESET}"
+				@echo "${RED}Deleting $(BONUSNAME) Executable ...${RESET}"
 				${RM} ${BONUSNAME}
 				make -C ${LIBFTDIR} fclean
 
